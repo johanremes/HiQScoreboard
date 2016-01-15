@@ -1,0 +1,124 @@
+﻿@model HiQScoreboard.scoreboardresults
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Scoreboard</h2>
+
+<!--<p>
+    <button class="js-push-button" disabled>
+        Enable Push Messages
+    </button>
+</p>
+
+<h2>cURL Command to Send Push</h2>
+<div class="js-curl-command"></div>
+    -->
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    if (Convert.ToString(ViewData["Confirmed"]) == "Not Confirmed")
+    {
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4"><label class="control-label">Office</label></div>
+                </div>
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.DropDownListFor(
+         model => model.office,
+         new SelectList(
+         new List<Object>
+                    {
+                        new { value = "Västerås" , text = "Västerås"  },
+                        new { value = "Stockholm" , text = "Stockholm" }
+                    },
+             "value",
+             "text",
+             Model.office
+         ), new { @class = "form-control" }
+     )
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4"><label class="control-label">Question 1</label></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.q1, new { @id = "q1value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ1, value);" })
+                </div>
+                <div class="col-md-1">
+                    @Html.Label(Convert.ToString(ViewData["q1"] + "%"), new { id = "LabelQ1", @class = "control-label col-md-1" })
+                </div>
+             </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4"><label class="control-label">Question 2</label></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.q2, new { @id = "q2value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ2, value);" })
+                </div>
+                <div class="col-md-1">
+                    @Html.Label(Convert.ToString(ViewData["q2"] + "%"), new { id = "LabelQ2", @class = "control-label col-md-1" }) 
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4"><label class="control-label">Question 3</label></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.q3, new { @id = "q3value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ3, value);" })
+                </div>
+                <div class="col-md-1">
+                    @Html.Label(Convert.ToString(ViewData["q3"] + "%"), new { id = "LabelQ3", @class = "control-label col-md-1" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4"><label class="control-label">Question 4</label></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.q4, new { @id = "q4value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ4, value);" })
+                </div>
+                <div class="col-md-1">
+                    @Html.Label(Convert.ToString(ViewData["q4"] + "%"), new { id = "LabelQ4", @class = "control-label col-md-1" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-4">
+                <input type="submit" value="Confirm" class="btn btn-primary" onclick="onConfirmButtonClicked()" />
+            </div>
+        </div>
+    </div>
+
+    }
+    else
+    {
+        <div>
+            @Html.Label(Convert.ToString(ViewData["Confirmed"]))
+        </div>
+    }
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
