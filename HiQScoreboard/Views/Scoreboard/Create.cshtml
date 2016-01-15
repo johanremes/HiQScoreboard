@@ -1,4 +1,4 @@
-﻿@model HiQScoreboard.scoreboardresults
+﻿@model HiQScoreboard.ScoreboardResults
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -30,19 +30,7 @@
                 </div>
             <div class="row">
                 <div class="col-md-4">
-                    @Html.DropDownListFor(
-         model => model.office,
-         new SelectList(
-         new List<Object>
-                    {
-                        new { value = "Västerås" , text = "Västerås"  },
-                        new { value = "Stockholm" , text = "Stockholm" }
-                    },
-             "value",
-             "text",
-             Model.office
-         ), new { @class = "form-control" }
-     )
+                    @Html.DropDownListFor(model => model.OfficesId, new SelectList(ViewBag.Offices, "Id", "Name"), new { @class = "form-control"})
                 </div>
             </div>
         </div>
@@ -53,10 +41,10 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    @Html.TextBoxFor(model => model.q1, new { @id = "q1value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ1, value);" })
+                    @Html.TextBoxFor(model => model.Q1, new { @id = "Q1Value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ1, value);" })
                 </div>
                 <div class="col-md-1">
-                    @Html.Label(Convert.ToString(ViewData["q1"] + "%"), new { id = "LabelQ1", @class = "control-label col-md-1" })
+                    @Html.Label(Convert.ToString(ViewData["Q1"] + "%"), new { id = "LabelQ1", @class = "control-label col-md-1" })
                 </div>
              </div>
         </div>
@@ -67,10 +55,10 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    @Html.TextBoxFor(model => model.q2, new { @id = "q2value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ2, value);" })
+                    @Html.TextBoxFor(model => model.Q2, new { @id = "Q2Value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ2, value);" })
                 </div>
                 <div class="col-md-1">
-                    @Html.Label(Convert.ToString(ViewData["q2"] + "%"), new { id = "LabelQ2", @class = "control-label col-md-1" }) 
+                    @Html.Label(Convert.ToString(ViewData["Q2"] + "%"), new { id = "LabelQ2", @class = "control-label col-md-1" }) 
                 </div>
             </div>
         </div>
@@ -81,10 +69,10 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    @Html.TextBoxFor(model => model.q3, new { @id = "q3value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ3, value);" })
+                    @Html.TextBoxFor(model => model.Q3, new { @id = "Q3Value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ3, value);" })
                 </div>
                 <div class="col-md-1">
-                    @Html.Label(Convert.ToString(ViewData["q3"] + "%"), new { id = "LabelQ3", @class = "control-label col-md-1" })
+                    @Html.Label(Convert.ToString(ViewData["Q3"] + "%"), new { id = "LabelQ3", @class = "control-label col-md-1" })
                 </div>
             </div>
         </div>
@@ -95,10 +83,10 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    @Html.TextBoxFor(model => model.q4, new { @id = "q4value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ4, value);" })
+                    @Html.TextBoxFor(model => model.Q4, new { @id = "Q4Value", @type = "range", min = 0, max = 100, @class = "form-control col-md-2", @onchange = "onQuestionValueChangeEvent(LabelQ4, value);" })
                 </div>
                 <div class="col-md-1">
-                    @Html.Label(Convert.ToString(ViewData["q4"] + "%"), new { id = "LabelQ4", @class = "control-label col-md-1" })
+                    @Html.Label(Convert.ToString(ViewData["Q4"] + "%"), new { id = "LabelQ4", @class = "control-label col-md-1" })
                 </div>
             </div>
         </div>

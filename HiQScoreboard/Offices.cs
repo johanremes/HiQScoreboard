@@ -12,17 +12,16 @@ namespace HiQScoreboard
     using System;
     using System.Collections.Generic;
     
-    public partial class ScoreboardResults
+    public partial class Offices
     {
-        public int Id { get; set; }
-        public Nullable<decimal> Q1 { get; set; }
-        public Nullable<decimal> Q2 { get; set; }
-        public Nullable<decimal> Q3 { get; set; }
-        public Nullable<decimal> Q4 { get; set; }
-        public Nullable<decimal> Q5 { get; set; }
-        public int OfficesId { get; set; }
-        public System.DateTime Date { get; set; }
+        public Offices()
+        {
+            this.ScoreboardResults = new HashSet<ScoreboardResults>();
+        }
     
-        public virtual Offices Offices { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        public virtual ICollection<ScoreboardResults> ScoreboardResults { get; set; }
     }
 }

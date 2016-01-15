@@ -166,6 +166,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Offices.cs">
+      <DependentUpon>ScoreboardDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScoreboardDBModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -182,11 +185,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ScoreboardDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="scoreboardresults.cs">
+    <Compile Include="ScoreboardResults.cs">
       <DependentUpon>ScoreboardDBModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ScoreboardDBModel.edmx.sql" />
     <Content Include="Scripts\HiQScoreboard\HiQScoreboard.js" />
     <Content Include="Scripts\Push-API\config.js" />
     <Content Include="Content\bootstrap.css" />

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -23,13 +22,13 @@ namespace HiQScoreboard.Controllers
         [HttpGet]
         public JsonResult GetScoreboardResultsJSON()
         {
-            var data = db.scoreboardresults.ToList();
+            var data = db.ScoreboardResults.ToList();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
-
-        public IEnumerable<scoreboardresults> GetScoreboardResultsIEnum()
+        
+        public IEnumerable<ScoreboardResults> GetScoreboardResultsIEnum()
         {
-            return db.scoreboardresults;
+            return db.ScoreboardResults;
         }
 
         [HttpGet]
@@ -48,35 +47,36 @@ namespace HiQScoreboard.Controllers
             else
                 ViewData["Confirmed"] = "Not Confirmed";
 
-            var scoreboardresult = new scoreboardresults();
+            var scoreboardResult = new ScoreboardResults();
 
             // Default data
-            scoreboardresult.q1 = 50;
-            scoreboardresult.q2 = 50;
-            scoreboardresult.q3 = 50;
-            scoreboardresult.q4 = 50;
-            ViewData["q1"] = scoreboardresult.q1;
-            ViewData["q2"] = scoreboardresult.q2;
-            ViewData["q3"] = scoreboardresult.q3;
-            ViewData["q4"] = scoreboardresult.q4;
+            scoreboardResult.Q1 = 50;
+            scoreboardResult.Q2 = 50;
+            scoreboardResult.Q3 = 50;
+            scoreboardResult.Q4 = 50;
+            ViewData["Q1"] = scoreboardResult.Q1;
+            ViewData["Q2"] = scoreboardResult.Q2;
+            ViewData["Q3"] = scoreboardResult.Q3;
+            ViewData["Q4"] = scoreboardResult.Q4;
+            ViewBag.Offices = db.Offices.ToList();
 
-            return View(scoreboardresult);
+            return View(scoreboardResult);
         }
 
         [HttpPost]
-        public ActionResult Create(scoreboardresults scoreboardresult)
+        public ActionResult Create(ScoreboardResults scoreboardResult)
         {
             // Check if cookie exists
             if (HttpContext.Request.Cookies.Get("Confirmed") != null)
             {
                 ViewData["Confirmed"] = "You've already answered";
-                return View(scoreboardresult);
+                return View(scoreboardResult);
             }
 
             try
             {
-                scoreboardresult.date = DateTime.Now;
-                db.scoreboardresults.Add(scoreboardresult);
+                scoreboardResult.Date = DateTime.Now;
+                db.ScoreboardResults.Add(scoreboardResult);
                 db.SaveChanges();
 
                 ViewData["Confirmed"] = "Your answer has been Confirmed";
@@ -91,14 +91,14 @@ namespace HiQScoreboard.Controllers
                 ViewData["Confirmed"] = "Not Confirmed " + e.ToString();
             }
 
-            return View(scoreboardresult);
+            return View(scoreboardResult);
         }
 
         [HttpGet]
         public void ExportToExcel()
         {
             GridView gv = new GridView();
-            gv.DataSource = db.scoreboardresults.ToList();
+            gv.DataSource = db.ScoreboardResults.ToList();
             gv.DataBind();
             Response.ClearContent();
             Response.Buffer = true;

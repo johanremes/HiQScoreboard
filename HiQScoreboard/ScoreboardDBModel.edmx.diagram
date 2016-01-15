@@ -5,7 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a609f38ed208448590ffded33ebdc39d" Name="Diagram1">
-        <EntityTypeShape EntityType="ScoreboardDBModel.scoreboardresults" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoreboardDBModel.ScoreboardResults" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoreboardDBModel.Offices" Width="1.5" PointX="4.25" PointY="0.75" />
+        <AssociationConnector Association="ScoreboardDBModel.Officesscoreboardresults" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

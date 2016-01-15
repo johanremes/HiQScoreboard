@@ -4,66 +4,123 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ScoreboardDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="scoreboardresults">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="office" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="date" Type="date" Nullable="false" />
-          <Property Name="q1" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="q2" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="q3" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="q4" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="q5" Type="numeric" Precision="18" Scale="0" />
-        </EntityType>
-        <EntityContainer Name="ScoreboardDBModelStoreContainer">
-          <EntitySet Name="scoreboardresults" EntityType="Self.scoreboardresults" Schema="dbo" store:Type="Tables" />
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="ScoreboardDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ScoreboardDBModelStoreContainer">
+    <EntitySet Name="ScoreboardResults" EntityType="ScoreboardDBModel.Store.ScoreboardResults" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Offices" EntityType="ScoreboardDBModel.Store.Offices" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="Officesscoreboardresults" Association="ScoreboardDBModel.Store.Officesscoreboardresults">
+      <End Role="Offices" EntitySet="Offices" />
+      <End Role="scoreboardresults" EntitySet="ScoreboardResults" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ScoreboardResults">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Q1" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="Q2" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="Q3" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="Q4" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="Q5" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="OfficesId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Offices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="Officesscoreboardresults">
+    <End Role="Offices" Type="ScoreboardDBModel.Store.Offices" Multiplicity="1" />
+    <End Role="scoreboardresults" Type="ScoreboardDBModel.Store.ScoreboardResults" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offices">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="scoreboardresults">
+        <PropertyRef Name="OfficesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ScoreboardDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="scoreboardresults">
+        <EntityType Name="ScoreboardResults">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="office" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="q1" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="q2" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="q3" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="q4" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="q5" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Q1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Q2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Q3" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Q4" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Q5" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Offices" Relationship="ScoreboardDBModel.Officesscoreboardresults" FromRole="scoreboardresults" ToRole="Offices" />
+          <Property Name="OfficesId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ScoreboardDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="scoreboardresults" EntityType="Self.scoreboardresults" />
+          <EntitySet Name="ScoreboardResults" EntityType="ScoreboardDBModel.ScoreboardResults" />
+          <EntitySet Name="Offices" EntityType="ScoreboardDBModel.Offices" />
+          <AssociationSet Name="Officesscoreboardresults" Association="ScoreboardDBModel.Officesscoreboardresults">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="scoreboardresults" EntitySet="ScoreboardResults" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Offices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ScoreboardResults" Relationship="ScoreboardDBModel.Officesscoreboardresults" FromRole="Offices" ToRole="scoreboardresults" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="Officesscoreboardresults">
+          <End Type="ScoreboardDBModel.Offices" Role="Offices" Multiplicity="1" />
+          <End Type="ScoreboardDBModel.ScoreboardResults" Role="scoreboardresults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="scoreboardresults">
+              <PropertyRef Name="OfficesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ScoreboardDBModelStoreContainer" CdmEntityContainer="ScoreboardDBEntities">
-          <EntitySetMapping Name="scoreboardresults">
-            <EntityTypeMapping TypeName="ScoreboardDBModel.scoreboardresults">
-              <MappingFragment StoreEntitySet="scoreboardresults">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="office" ColumnName="office" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="q1" ColumnName="q1" />
-                <ScalarProperty Name="q2" ColumnName="q2" />
-                <ScalarProperty Name="q3" ColumnName="q3" />
-                <ScalarProperty Name="q4" ColumnName="q4" />
-                <ScalarProperty Name="q5" ColumnName="q5" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ScoreboardDBModelStoreContainer" CdmEntityContainer="ScoreboardDBEntities">
+    <EntitySetMapping Name="ScoreboardResults">
+      <EntityTypeMapping TypeName="IsTypeOf(ScoreboardDBModel.ScoreboardResults)">
+        <MappingFragment StoreEntitySet="ScoreboardResults">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Q1" ColumnName="Q1" />
+          <ScalarProperty Name="Q2" ColumnName="Q2" />
+          <ScalarProperty Name="Q3" ColumnName="Q3" />
+          <ScalarProperty Name="Q4" ColumnName="Q4" />
+          <ScalarProperty Name="Q5" ColumnName="Q5" />
+          <ScalarProperty Name="OfficesId" ColumnName="OfficesId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Offices">
+      <EntityTypeMapping TypeName="IsTypeOf(ScoreboardDBModel.Offices)">
+        <MappingFragment StoreEntitySet="Offices">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -77,7 +134,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

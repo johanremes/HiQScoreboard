@@ -25,6 +25,7 @@ namespace HiQScoreboard
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<scoreboardresults> scoreboardresults { get; set; }
+        public DbSet<ScoreboardResults> ScoreboardResults { get; set; }
+        public DbSet<Offices> Offices { get; set; }
     }
 }
