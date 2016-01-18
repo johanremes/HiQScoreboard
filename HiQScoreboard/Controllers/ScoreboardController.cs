@@ -49,15 +49,15 @@ namespace HiQScoreboard.Controllers
 
             var scoreboardResult = new ScoreboardResults();
 
-            // Default data
-            scoreboardResult.Q1 = 50;
-            scoreboardResult.Q2 = 50;
-            scoreboardResult.Q3 = 50;
-            scoreboardResult.Q4 = 50;
-            ViewData["Q1"] = scoreboardResult.Q1;
-            ViewData["Q2"] = scoreboardResult.Q2;
-            ViewData["Q3"] = scoreboardResult.Q3;
-            ViewData["Q4"] = scoreboardResult.Q4;
+
+            ViewBag.Questions = new List<string>()
+            {
+                { "Uppdraget"},
+                { "Ledningen"},
+                { "HiQ"},
+                { "Kollegorna"}
+            };
+
             ViewBag.Offices = db.Offices.ToList();
 
             return View(scoreboardResult);
