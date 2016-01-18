@@ -112,5 +112,16 @@ namespace HiQScoreboard.Controllers
             Response.Flush();
             Response.End();
         }
+
+        [HttpGet]
+        public void DeleteCookie()
+        {
+            HttpCookie cookie = HttpContext.Request.Cookies.Get("Confirmed");
+            if (cookie != null)
+            {
+                cookie.Expires = DateTime.Today.AddDays(-1); // Expires NOW!
+                Response.SetCookie(cookie);
+            }
+        }
     }
 }
