@@ -4,13 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
+<div class="row" id="wrapper">
 <div class="col-md-12 ">
-    <h2 class="page-header" style="text-align:center">Scoreboard</h2>
+    <h2 id="title">Scoreboard</h2>
+
     @*<p>
-        <button class="js-push-button" disabled>
-            Enable Push Messages
-        </button>
+       
     </p>
 
     <h2>cURL Command to Send Push</h2>
@@ -23,12 +22,14 @@
         {
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <div class="form-group input-lg">
+                @*<div class="form-group input-lg hidden">
                     <label class="control-label col-md-2 col-xs-3">Kontor</label>
                     <div class="col-md-4 col-xs-9">
                         @Html.DropDownListFor(model => model.OfficesId, new SelectList(ViewBag.Offices, "Id", "Name"), new { @class = "form-control input-lg" })
                     </div>
-                </div>
+                </div>*@
+
+                @Html.HiddenFor(model => model.OfficesId, new { @value = "", @name="OfficesId", @id="OfficesId" });
 
                 <div class="row col-md-12">
                     <div class="col-md-offset-2 col-md-9">
@@ -99,7 +100,7 @@
                     
                 <div class="form-group input-lg">
                     <div class="col-md-offset-2 col-md-9">
-                        <input type="submit" value="Lämna in" class="btn btn-primary btn-lg" onclick="onConfirmButtonClicked()" />
+                        <input type="submit" value="Svara" class="btn btn-lg" onclick="onConfirmButtonClicked()" />
                     </div>
                 </div>
         }

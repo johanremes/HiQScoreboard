@@ -10,36 +10,16 @@ function initValues()
     onQuestionValueChangeEvent($('#LabelQ4'), 50);
 }
 
-
-function between(val, min, max)
-{
-  return (val >= min && val <= max)
-}
-
 function onQuestionValueChangeEvent(element, value) {
-
     var txtVal = '';
-
-    $(element).removeClass('bg-danger');
-    $(element).removeClass('bg-primary');
-    $(element).removeClass('bg-success');
-
-    if (value < 69) {
-        //$(element).addClass
+    if (value < 39) 
         txtVal = '😞';
-        $(element).addClass('bg-danger');
-    }
-    else if (value <= 89) {
+    else if (value <= 59) 
         txtVal = '😐';
-        $(element).addClass('bg-primary');
-    }
-    else if (value >= 90) {
+    else if (value <= 89) 
+        txtVal = '😊';
+    else if (value >= 90) 
         txtVal = '😄';
-        $(element).addClass('bg-success');
-    }
-    txtVal += ' (' + value + ')';
-
+    txtVal += ' ' + value;
     $(element).text(txtVal);
-    
-
 }

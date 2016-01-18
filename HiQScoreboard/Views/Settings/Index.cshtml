@@ -1,0 +1,36 @@
+﻿@model HiQScoreboard.Offices
+
+@{
+    ViewBag.Title = "Settings";
+}
+
+<div class="row" id="wrapper">
+    <div class="col-md-12 ">
+        <h2 id="title">Inställningar</h2>
+
+        <div class="form-horizontal">
+            <div class="form-group input-lg">
+                <label class="control-label col-md-4 col-xs-4">Push</label>
+                <div class="col-md-8 col-xs-8">
+                    <button class="js-push-button btn btn-lg btn-primary" disabled>
+                        Tillåt
+                    </button>
+                </div>
+            </div>
+            <div class="form-group input-lg">
+                <label class="control-label col-md-4 col-xs-4">Kontor</label>
+                <div class="col-md-4 col-xs-8">
+                    @Html.DropDownListFor(model => model.Name, new SelectList(ViewBag.Offices, "Id", "Name"), new { @class = "form-control input-lg" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="margin-bottom:0px">
+            <div class="col-md-offset-4 col-md-8">
+                <input type="submit" value="Spara" class="btn btn-lg" onclick="" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

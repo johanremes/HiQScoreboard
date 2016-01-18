@@ -49,7 +49,6 @@ namespace HiQScoreboard.Controllers
 
             var scoreboardResult = new ScoreboardResults();
 
-
             ViewBag.Questions = new List<string>()
             {
                 { "Uppdraget"},
@@ -58,7 +57,7 @@ namespace HiQScoreboard.Controllers
                 { "Kollegorna"}
             };
 
-            ViewBag.Offices = db.Offices.ToList();
+            //ViewBag.Offices = db.Offices.ToList();
 
             return View(scoreboardResult);
         }
