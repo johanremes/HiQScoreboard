@@ -45,15 +45,16 @@ namespace HiQScoreboard.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            HttpCookie c = HttpContext.Request.Cookies.Get("_Settings");
+
+            if (c != null)
+                ViewBag.OfficeId = c.Value.Split('-').First();
+
+            ViewBag.HasCookie = (c == null) ? false : true;
             // Check cookie
             HttpCookie cookie = HttpContext.Request.Cookies.Get("Confirmed");
-            if ((cookie != null))
-                ViewData["Confirmed"] = "You've already answered";
-            else
-                ViewData["Confirmed"] = "Not Confirmed";
-
+            ViewData["Confirmed"] = (cookie != null) ? "You've already answered" : "Not Confirmed";
             var scoreboardResult = new ScoreboardResults();
-
             ViewBag.Questions = new List<string>()
             {
                 { "Uppdraget"},
@@ -61,15 +62,15 @@ namespace HiQScoreboard.Controllers
                 { "HiQ"},
                 { "Kollegorna"}
             };
-
-            //ViewBag.Offices = db.Offices.ToList();
-
             return View(scoreboardResult);
         }
 
         [HttpPost]
         public ActionResult Create(ScoreboardResults scoreboardResult)
         {
+            ViewBag.HasCookie = true ;
+            ViewBag.OfficeID = 0;
+
             // Check if cookie exists
             if (HttpContext.Request.Cookies.Get("Confirmed") != null)
             {

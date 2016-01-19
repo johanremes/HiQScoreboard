@@ -5,9 +5,14 @@
 }
 
 <div class="row" id="wrapper">
+
+
+
 <div class="col-md-12 ">
     <h2 id="title">Scoreboard</h2>
 
+@if (@ViewBag.HasCookie)
+{
     @*<p>
        
     </p>
@@ -29,7 +34,9 @@
                     </div>
                 </div>*@
 
-                @Html.HiddenFor(model => model.OfficesId, new { @value = "", @name="OfficesId", @id="OfficesId" });
+            @*    @Html.HiddenFor(model => model.OfficesId, new { @value = ViewBag.OfficeId, @name = "OfficesId", @id = "OfficesId" }); *@
+                <input type="hidden" name="OfficesId" id="OfficesId" value="@ViewBag.OfficeId" />
+
 
                 <div class="row col-md-12">
                     <div class="col-md-offset-2 col-md-9">
@@ -44,11 +51,16 @@
                     </label>
                     <div class="col-md-8 col-xs-8">
                         @Html.TextBoxFor(model => model.Q1,
-                        new { @id = "Q1Value", @type = "range", min = 0, max = 100,
-                            @class = "form-control col-md-2 input-lg",
-                            @onchange = "onQuestionValueChangeEvent(LabelQ1, value);",
-                            @oninput = "onQuestionValueChangeEvent(LabelQ1, value);",
-                        })
+                 new
+                 {
+                     @id = "Q1Value",
+                     @type = "range",
+                     min = 0,
+                     max = 100,
+                     @class = "form-control col-md-2 input-lg",
+                     @onchange = "onQuestionValueChangeEvent(LabelQ1, value);",
+                     @oninput = "onQuestionValueChangeEvent(LabelQ1, value);",
+                 })
                     </div>
                 </div>
 
@@ -59,11 +71,16 @@
                     </label>
                     <div class="col-md-8 col-xs-8">
                         @Html.TextBoxFor(model => model.Q2,
-                        new { @id = "Q2Value", @type = "range", min = 0, max = 100,
-                        @class = "form-control col-md-2 input-lg",
-                            @onchange = "onQuestionValueChangeEvent(LabelQ2, value);",
-                            @oninput = "onQuestionValueChangeEvent(LabelQ2, value);"
-                        })
+                 new
+                 {
+                     @id = "Q2Value",
+                     @type = "range",
+                     min = 0,
+                     max = 100,
+                     @class = "form-control col-md-2 input-lg",
+                     @onchange = "onQuestionValueChangeEvent(LabelQ2, value);",
+                     @oninput = "onQuestionValueChangeEvent(LabelQ2, value);"
+                 })
                     </div>
                 </div>
 
@@ -74,12 +91,16 @@
                     </label>
 
                     <div class="col-md-8 col-xs-8">
-                        @Html.TextBoxFor(model => model.Q3, new { @id = "Q3Value",
-                        @type = "range", min = 0, max = 100,
-                        @class = "form-control col-md-2 input-lg",
-                        @onchange = "onQuestionValueChangeEvent(LabelQ3, value);",
-                        @oninput = "onQuestionValueChangeEvent(LabelQ3, value);"
-                    })
+                        @Html.TextBoxFor(model => model.Q3, new
+                   {
+                       @id = "Q3Value",
+                       @type = "range",
+                       min = 0,
+                       max = 100,
+                       @class = "form-control col-md-2 input-lg",
+                       @onchange = "onQuestionValueChangeEvent(LabelQ3, value);",
+                       @oninput = "onQuestionValueChangeEvent(LabelQ3, value);"
+                   })
                     </div>
                     <div class="col-md-1 col-xs-2">
                         
@@ -90,14 +111,19 @@
                     <label class=" col-md-2 col-xs-4">@ViewBag.Questions[3]<br />
                         <span id="LabelQ4" class="">@Model.Q4</span></label>
                     <div class="col-md-8 col-xs-8">
-                        @Html.TextBoxFor(model => model.Q4, new { @id = "Q4Value",
-                        @type = "range", min = 0, max = 100, @class = "form-control col-md-2 input-lg",
-                        @onchange = "onQuestionValueChangeEvent(LabelQ4, value);",
-                        @oninput = "onQuestionValueChangeEvent(LabelQ4, value);"
-                    })
+                   @Html.TextBoxFor(model => model.Q4, 
+                   new {
+                       @id = "Q4Value",
+                       @type = "range",
+                       min = 0,
+                       max = 100,
+                       @class = "form-control col-md-2 input-lg",
+                       @onchange = "onQuestionValueChangeEvent(LabelQ4, value);",
+                       @oninput = "onQuestionValueChangeEvent(LabelQ4, value);"
+                   })
                     </div>
                 </div>
-                    
+
                 <div class="form-group input-lg">
                     <div class="col-md-offset-2 col-md-9">
                         <input type="submit" value="Svara" class="btn btn-lg" onclick="onConfirmButtonClicked()" />
@@ -112,6 +138,11 @@
         }
     }
 </div>
+}
+else
+{
+    @Html.ActionLink("Inställningar", "Index", "Settings")
+}
 </div>
 
 @section Scripts {
