@@ -27,10 +27,9 @@ namespace HiQScoreboard
                       "~/Scripts/HiQScoreboard/HiQScoreboard.js"));
 
             bundles.Add(new StyleBundle("~/bundles/push-api").Include(
-                    "~/Scripts/Push-API/main.js",
-                    "~/Scripts/Push-API/config.js",
-                    "~/Scripts/Push-API/service-worker.js",
-                    "~/Scripts/Push-API/demo.js"));
+                    "~/main.js",
+                    "~/config.js",
+                    "~/demo.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
