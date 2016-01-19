@@ -16,7 +16,19 @@ namespace HiQScoreboard.Controllers
         public ActionResult Index()
         {
             ViewBag.Offices = db.Offices.ToList();
-            return View();
+            SettingsModel s = new SettingsModel();
+            return View(s);
+        }
+
+        // POST: Settings Save
+        [HttpPost]
+        public ActionResult Index(SettingsModel settings)
+        {
+            HttpCookie cookie = new HttpCookie("_Settings", settings.Office.Id + "-" + settings.AllowPush);
+            
+            cookie.Expires = DateTime.Today.AddDays(1); // Expires at midnight
+            Response.SetCookie(cookie);
+            return RedirectToAction("Create", "Scoreboard");
         }
     }
 }

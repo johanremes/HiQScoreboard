@@ -1,4 +1,4 @@
-﻿@model HiQScoreboard.Offices
+﻿@model HiQScoreboard.Models.SettingsModel
 
 @{
     ViewBag.Title = "Settings";
@@ -8,27 +8,34 @@
     <div class="col-md-12 ">
         <h2 id="title">Inställningar</h2>
 
-        <div class="form-horizontal">
-            <div class="form-group input-lg">
-                <label class="control-label col-md-4 col-xs-4">Push</label>
-                <div class="col-md-8 col-xs-8">
-                    <button class="js-push-button btn btn-lg btn-primary" disabled>
-                        Tillåt
-                    </button>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-horizontal">
+                <div class="form-group input-lg">
+                    @Html.LabelFor(model => model.AllowPush, new { @class= "control-label col-md-4 col-xs-4" })
+                    <div class="col-md-8 col-xs-8">
+                        <button id="push-toggle" class="js-push-button btn btn-lg btn-primary" disabled>
+                            Tillåt
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group input-lg">
+                    @Html.LabelFor(model => model.Office, new { @class = "control-label col-md-4 col-xs-4" })
+                    <div class="col-md-4 col-xs-8">
+                        @Html.DropDownListFor(model => model.Office.Id, new SelectList(ViewBag.Offices, "Id", "Name"), new { @class = "form-control input-lg" })
+                    </div>
                 </div>
             </div>
-            <div class="form-group input-lg">
-                <label class="control-label col-md-4 col-xs-4">Kontor</label>
-                <div class="col-md-4 col-xs-8">
-                    @Html.DropDownListFor(model => model.Name, new SelectList(ViewBag.Offices, "Id", "Name"), new { @class = "form-control input-lg" })
+            <br />
+            <div class="form-group" style="margin-bottom:0px">
+                <div class="col-md-offset-4 col-md-8 col-sm-offset-4 col-xs-offset-4">
+                    <input type="submit" value="Spara" class="btn btn-lg" onclick="" />
                 </div>
             </div>
-        </div>
-        <div class="form-group" style="margin-bottom:0px">
-            <div class="col-md-offset-4 col-md-8">
-                <input type="submit" value="Spara" class="btn btn-lg" onclick="" />
-            </div>
-        </div>
+            <br />
+        }
     </div>
 </div>
 

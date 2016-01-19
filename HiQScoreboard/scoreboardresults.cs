@@ -14,6 +14,7 @@ namespace HiQScoreboard
     
     public partial class ScoreboardResults
     {
+        
         public int Id { get; set; }
         public Nullable<decimal> Q1 { get; set; }
         public Nullable<decimal> Q2 { get; set; }
