@@ -1,0 +1,16 @@
+{
+  "name": "Push Demo",
+  "short_name": "Push Demo",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "./Scoreboard/Create",
+  "display": "standalone",
+  "gcm_sender_id": "1061173843190",
+
+  "//": "gcm_user_visible_only is only needed until Chrome 44 is in stable ",
+  "gcm_user_visible_only": true
+}
