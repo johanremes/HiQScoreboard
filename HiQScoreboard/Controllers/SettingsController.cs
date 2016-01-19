@@ -15,20 +15,7 @@ namespace HiQScoreboard.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            // Create and set cookie
-            HttpCookie cookie = new HttpCookie("", "Created"); // Set cookie value = "True"
-            cookie.Expires = DateTime.Today.AddDays(1); // Expires at midnight
-            Response.SetCookie(cookie);
             ViewBag.Offices = db.Offices.ToList();
-            SettingsModel s = new SettingsModel();
-            return View();
-        }
-
-        // POST: Settings Save
-        [HttpPost]
-        public ActionResult Index(SettingsModel settings)
-        {
-            
             return View();
         }
     }

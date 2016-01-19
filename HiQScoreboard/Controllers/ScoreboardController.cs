@@ -40,15 +40,6 @@ namespace HiQScoreboard.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            HttpCookie settingsCookie = HttpContext.Request.Cookies.Get(
-                Guid.NewGuid().ToString());
-
-            if (settingsCookie == null)
-            {
-                return Redirect("Settings/Index");
-            }
-            
-
             // Check cookie
             HttpCookie cookie = HttpContext.Request.Cookies.Get("Confirmed");
             if ((cookie != null))
