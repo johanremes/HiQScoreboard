@@ -167,6 +167,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Offices.cs">
       <DependentUpon>ScoreboardDBModel.tt</DependentUpon>
     </Compile>
@@ -195,6 +196,7 @@
     <Content Include="demo.js" />
     <Content Include="favicon.ico" />
     <Content Include="Images\favicon.ico" />
+    <Content Include="Images\HiQLogoBlack.png" />
     <Content Include="main.js" />
     <Content Include="ScoreboardDBModel.edmx.sql" />
     <Content Include="Scripts\HiQScoreboard\HiQScoreboard.js" />
@@ -260,7 +262,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="JSON\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -271,6 +272,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

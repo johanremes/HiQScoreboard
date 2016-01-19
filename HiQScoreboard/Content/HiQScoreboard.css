@@ -1,18 +1,27 @@
 ﻿body {
-    background: #f1f1f1;
-    padding-top: 80px;
+    background: #fff;
 }
 
 #title {
-    color:#00a160 ;
+    color: #FF0096 ;
     text-align: center;
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 #wrapper {
     background: #fff;
-    border: 2px solid #DCDCDC;
+    border: 0px solid #DCDCDC;
     padding-bottom: 15px;
+}
+
+.logo {
+    background: transparent url(../Images/HiQLogoBlack.png) top left no-repeat;
+    height: 60px;
+    position: absolute;
+    bottom: -30px;
+    width: 75px;
+    right: 0px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -40,11 +49,17 @@
 .form-group select, .form-group input[type=range] {
     background: #EEEEF0;
     border: 0;
-    border-radius: 0;
+    border-radius: 10px;
 }
 
  .form-group input[type=submit] {
-     background: #000;
+     background: #FF0096;
+     color: #fff;
+     border-radius: 0;
+ }
+
+  .form-group input[type=submit]:hover {
+     background: #e00083;
      color: #fff;
      border-radius: 0;
  }
@@ -54,7 +69,8 @@
     border: none;
     height: 30px;
     width: 30px;
-    border-radius: 50%;
-    background: black;
+    border-radius: 35%;
+    background: #FF0096;
+    box-shadow: 10px;
     margin-top: 0px;
 }
