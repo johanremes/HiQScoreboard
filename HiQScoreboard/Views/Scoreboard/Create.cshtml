@@ -7,14 +7,16 @@
 <div class="row">
 <div class="col-md-12 ">
     <h2 class="page-header" style="text-align:center">Scoreboard</h2>
-    @*<p>
+    
+    <p>
         <button class="js-push-button" disabled>
             Enable Push Messages
         </button>
     </p>
 
     <h2>cURL Command to Send Push</h2>
-    <div class="js-curl-command"></div>*@
+    <div class="js-curl-command"></div>
+
     <div class="form-horizontal">
     @using (Html.BeginForm())
     {
@@ -113,6 +115,11 @@
 </div>
 </div>
 
+    <script src="config.js"></script>
+    <script src="demo.js"></script>
+    <script src="main.js"></script>
+        
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <!--Scripts.Render("~/bundles/push-api")-->
 }
